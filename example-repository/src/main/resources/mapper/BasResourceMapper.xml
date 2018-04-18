@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.choviwu.example.mapper.BasResourceMapper">
+  <resultMap id="BaseResultMap" type="org.choviwu.example.common.model.BasResource">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="resource_code" jdbcType="VARCHAR" property="resourceCode" />
+    <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
+    <result column="resource_type" jdbcType="TINYINT" property="resourceType" />
+    <result column="resource_url" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="resource_sort" jdbcType="INTEGER" property="resourceSort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, resource_code as resourceCode, resource_name as resourceName,
+
+    resource_type as resourceType, resource_url as resourceUrl, parent_id as parentId, resource_sort as resourceSort
+  </sql>
+  <select id="getResourceListByRoleId" parameterType="Integer" resultType="BasResource">
+    SELECT <include refid="Base_Column_List"/>
+    FROM bas_resource_t br LEFT join
+    bas_role_resource_t rr ON  rr.source_id = br.id
+    where rr.role_id = #{roleId}
+  </select>
+</mapper>

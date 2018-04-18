@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.choviwu.example.mapper.BasRoleMapper">
+  <resultMap id="BaseResultMap" type="org.choviwu.example.common.model.BasRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, role_name as roleName, description
+  </sql>
+
+
+
+  <select id="getRoleByUserId" parameterType="Integer" resultType="BasRole">
+    SELECT <include refid="Base_Column_List"/>
+    FROM bas_role_t role LEFT JOIN
+    bas_user_role_t ur ON  ur.role_id = role.id
+    where ur.user_id = #{userId}
+  </select>
+
+  <select id="getOneByRoleName" parameterType="String" resultType="BasRole">
+    SELECT <include refid="Base_Column_List"/>
+    FROM bas_role_t role
+    WHERE role.role_name = #{roleName}
+  </select>
+</mapper>

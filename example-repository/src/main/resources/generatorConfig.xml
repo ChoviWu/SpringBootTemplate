@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3">
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="false"/>
+        </plugin>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://xxxx:3306/milk?characterEncoding=utf-8"
+                        userId="xxx"
+                        password="xxxx">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="org.choviwu.example.common.model"
+                            targetProject="D:\\Myproject\\springboot-template\\example-common\\src\\main\\java"/>
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="D:\\Myproject\\springboot-template\\example-repository\\src\\main\\resources"/>
+
+        <javaClientGenerator targetPackage="org.choviwu.example.mapper"
+                             targetProject="D:\\Myproject\\springboot-template\\example-repository\\src\\main\\java" type="XMLMAPPER" />
+
+
+        <table tableName="bus_message_log_t" domainObjectName="BusMessageLog" ></table>
+        <!--<table tableName="bas_user_t" domainObjectName="BasUser" ></table>-->
+        <!--<table tableName="bas_role_t" domainObjectName="BasRole" ></table>-->
+        <!--<table tableName="bas_role_resource_t" domainObjectName="BasRoleResource" ></table>-->
+        <!--<table tableName="bas_resource_t" domainObjectName="BasResource" ></table>-->
+
+
+
+
+
+
+    </context>
+</generatorConfiguration>
